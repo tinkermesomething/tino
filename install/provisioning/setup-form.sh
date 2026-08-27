@@ -104,7 +104,7 @@ omarchy_prompt_keyboard() {
 omarchy_prompt_username() {
   local status
   while true; do
-    username=$(gum input --placeholder "Alphanumeric without spaces (like dhh)" --prompt.foreground="#845DF9" --prompt "Username> ") && status=0 || status=$?
+    username=$(gum input --placeholder "Alphanumeric without spaces (like tino)" --prompt.foreground="#845DF9" --prompt "Username> ") && status=0 || status=$?
     ((status == 0)) || return $status
 
     if [[ "$username" =~ $OMARCHY_USERNAME_PATTERN ]]; then

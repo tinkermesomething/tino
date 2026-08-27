@@ -3,7 +3,7 @@
 # omarchy:summary=Apply Omarchy hardware-specific packages and system configuration
 # omarchy:group=apply
 # omarchy:requires-sudo=true
-# omarchy:examples=omarchy apply hardware --install-user dhh
+# omarchy:examples=omarchy apply hardware --install-user tino
 # omarchy:hidden=true
 
 set -euo pipefail

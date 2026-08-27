@@ -3,7 +3,7 @@
 # omarchy:summary=Apply Omarchy system setup in the installed target
 # omarchy:group=apply
 # omarchy:requires-sudo=true
-# omarchy:examples=omarchy apply system --install-user dhh --first-install
+# omarchy:examples=omarchy apply system --install-user tino --first-install
 # omarchy:hidden=true
 
 set -euo pipefail

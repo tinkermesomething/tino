@@ -2,7 +2,7 @@
 
 # omarchy:summary=Send files to a machine on your tailnet with Taildrop
 # omarchy:args=<machine> [file...]
-# omarchy:examples=omarchy tailscale send dhh-fd | omarchy tailscale send dhh-fd ~/Downloads/notes.pdf
+# omarchy:examples=omarchy tailscale send tino-fd | omarchy tailscale send tino-fd ~/Downloads/notes.pdf
 
 set -euo pipefail
 

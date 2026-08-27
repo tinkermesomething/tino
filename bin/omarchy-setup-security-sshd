@@ -2,7 +2,7 @@
 
 # omarchy:summary=Set up the OpenSSH server, open the firewall, and authorize an SSH key
 # omarchy:args=[--key=<public-key>] [--gh-keys <github-username>]
-# omarchy:examples=omarchy-setup-security-sshd | omarchy-setup-security-sshd --gh-keys dhh | omarchy-setup-security-sshd --key="ssh-ed25519 AAAA... user@host"
+# omarchy:examples=omarchy-setup-security-sshd | omarchy-setup-security-sshd --gh-keys tino | omarchy-setup-security-sshd --key="ssh-ed25519 AAAA... user@host"
 # omarchy:requires-sudo=true
 
 set -e
@@ -122,7 +122,7 @@ authorize_keys_from_github() {
 prompt_for_github_user() {
   local username
 
-  username=$(gum input --prompt "GitHub username> " --placeholder "dhh") || exit 1
+  username=$(gum input --prompt "GitHub username> " --placeholder "tino") || exit 1
   if [[ -z $username ]]; then
     echo -e "\e[31mNo GitHub username given.\e[0m" >&2
     exit 1
