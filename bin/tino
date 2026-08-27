@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Personal convenience alias: `tino` == `omarchy`. Not part of the omarchy-*
+# discovered command set, so it carries no command metadata of its own.
+
+exec omarchy "$@"
