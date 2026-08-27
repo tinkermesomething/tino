@@ -10,5 +10,4 @@ omarchy-mise-install pi
 omarchy-mise-install github:can1357/oh-my-pi omp
 omarchy-mise-install npm:@kitlangton/ghui ghui
 omarchy-mise-install aqua:modem-dev/hunk hunk
-omarchy-mise-install github:basecamp/hey-cli hey
 omarchy-mise-install github:OpenRouterLabs/ori-releases ori
