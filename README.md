@@ -1,14 +1,17 @@
-# Omarchy
+# Tino
 
-Omarchy is a beautiful, modern & opinionated Linux distribution by DHH.
+Tino ("This Is Not Omarchy") is a personal fork of [Omarchy](https://omarchy.org),
+the beautiful, opinionated Arch/Hyprland Linux setup originally by DHH. It's a
+single-user rebrand: same theme engine and Hyprland/Quickshell foundation,
+minus the upstream defaults and integrations this fork doesn't want.
 
-Read more at [omarchy.org](https://omarchy.org).
+Not published or supported beyond that — it's a personal machine config, not
+a distribution.
 
-## The Omarchy Manual
+## The Manual
 
-The manual lives in [`manual/`](manual/), which is its authoritative source. It's
-mirrored to [learn.omacom.io](https://learn.omacom.io/2/the-omarchy-manual), where
-its screenshots are also hosted.
+The manual lives in [`manual/`](manual/), inherited from upstream Omarchy and
+not yet reworked for this fork.
 
 - [Welcome to Omarchy!](manual/01-welcome-to-omarchy.md)
 
@@ -76,4 +79,6 @@ its screenshots are also hosted.
 
 ## License
 
-Omarchy is released under the [MIT License](https://opensource.org/licenses/MIT).
+Released under the [MIT License](https://opensource.org/licenses/MIT), inherited
+from the upstream [basecamp/omarchy](https://github.com/basecamp/omarchy) project.
+Original copyright retained in [LICENSE](LICENSE).
