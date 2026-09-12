@@ -1,0 +1,135 @@
+# rainbow-void: no visible borders anywhere in the shell chrome.
+
+[bar]
+background       = "#000000"
+background-alpha = 1.0
+text             = "#ffffff"
+active           = "#ff5555"
+scale-with-font  = true
+size-horizontal  = 26
+size-vertical    = 28
+
+[hyprland]
+active-border            = "rgba(00000000)"
+active-border-foreground = "rgba(00000000)"
+
+[controls]
+normal-color        = "#ffffff"
+normal-fill-alpha   = 0.04
+normal-border       = "#ffffff"
+normal-border-width = 0
+normal-border-alpha = 0.0
+
+hover-cursor-color        = "#ffffff"
+hover-cursor-fill-alpha   = 0.08
+hover-cursor-border       = "#ffffff"
+hover-cursor-border-width = 0
+hover-cursor-border-alpha = 0.0
+
+focus-color        = "#ffffff"
+focus-fill-alpha   = 0.08
+focus-border       = "#ffffff"
+focus-border-width = 0
+focus-border-alpha = 0.0
+
+selected-color        = "#ffffff"
+selected-fill-alpha   = 0.18
+selected-border       = "#ffffff"
+selected-border-width = 0
+selected-border-alpha = 0.0
+
+pressed-fill-alpha   = 0.22
+selection-fill-alpha = 0.35
+
+[spacing]
+scale = 1.0
+scale-with-font = true
+
+[font]
+base-size = 12
+
+[popups]
+background       = "#000000"
+background-alpha = 1.0
+text             = "#ffffff"
+border           = "rgba(00000000)"
+border-alpha     = 0.0
+border-width     = 0
+
+[tooltip]
+background       = "#000000"
+background-alpha = 0.97
+text             = "#ffffff"
+border           = "rgba(00000000)"
+border-alpha     = 0.0
+
+[notifications]
+background       = "#000000"
+background-alpha = 1.0
+text             = "#ffffff"
+border           = "rgba(00000000)"
+border-alpha     = 0.0
+border-width     = 0
+countdown        = "#ffffff"
+
+[launcher]
+background                = "#000000"
+background-alpha          = 0.95
+text                      = "#ffffff"
+border                    = "rgba(00000000)"
+border-alpha              = 0.0
+scrim                     = "#000000"
+scrim-alpha                = 0.5
+selected-background       = "#ffffff"
+selected-background-alpha = 0.08
+selected-text             = "#ffffff"
+selected-border           = "rgba(00000000)"
+selected-border-alpha     = 0.0
+
+[menu]
+background                = "#000000"
+background-alpha          = 1.0
+text                      = "#ffffff"
+border                    = "rgba(00000000)"
+border-alpha              = 0.0
+scrim                     = "#000000"
+scrim-alpha                = 0.5
+selected-background       = "#ffffff"
+selected-background-alpha = 0.08
+selected-text             = "#ffffff"
+selected-border           = "rgba(00000000)"
+selected-border-alpha     = 0.0
+
+[polkit]
+background       = "#000000"
+background-alpha = 1.0
+text             = "#ffffff"
+text-error       = "#ff5555"
+border           = "rgba(00000000)"
+border-error     = "#ff5555"
+border-alpha     = 0.0
+scrim            = "#000000"
+scrim-alpha      = 0.5
+accent           = "#ffffff"
+
+[lock]
+background       = "#000000"
+background-alpha = 0.8
+text             = "#ffffff"
+placeholder      = "#555555"
+text-error       = "#ff5555"
+border           = "rgba(00000000)"
+border-active    = "rgba(00000000)"
+border-error     = "#ff5555"
+border-alpha     = 0.0
+selection        = "#ffffff"
+selection-alpha  = 0.45
+
+[image-picker]
+scrim                   = "#000000"
+scrim-alpha              = 0.5
+text                    = "#ffffff"
+selected-border         = "#ffffff"
+selected-border-alpha    = 1.0
+unselected-border       = "#ffffff"
+unselected-border-alpha  = 0.28

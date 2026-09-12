@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# omarchy:summary=Restart the Omarchy shell
+# omarchy:summary=Restart the Tino shell
 # omarchy:examples=omarchy restart shell
 
 # A caller opened after dev link/unlink may disagree with the still-running
@@ -9,7 +9,7 @@ session_omarchy_path=$(systemctl --user show-environment 2>/dev/null | sed -n 's
 : "${session_omarchy_path:=$OMARCHY_PATH}"
 
 CONFIG_DIR="$session_omarchy_path/shell"
-[[ -f $CONFIG_DIR/shell.qml ]] || { echo "Omarchy shell config not found: $CONFIG_DIR" >&2; exit 1; }
+[[ -f $CONFIG_DIR/shell.qml ]] || { echo "Tino shell config not found: $CONFIG_DIR" >&2; exit 1; }
 
 # Allow running from outside the session (e.g. over ssh) by deriving the
 # Hyprland instance signature from the newest instance runtime dir.
@@ -30,7 +30,7 @@ if omarchy-hyprland-session-locked; then
   locking=$(OMARCHY_PATH="$session_omarchy_path" OMARCHY_SHELL_IPC_TIMEOUT=0.5s omarchy-shell lock status 2>/dev/null |
     jq -r '.secure or .requested' 2>/dev/null)
   if [[ $locking == "true" ]]; then
-    echo "Refusing to restart Omarchy shell while the session is locked." >&2
+    echo "Refusing to restart Tino shell while the session is locked." >&2
     exit 1
   fi
   relock=1
@@ -74,7 +74,7 @@ for (( attempt = 0; attempt < 20; attempt++ )); do
     # The session stays compositor-locked after the old lock client died, so
     # re-acquire the lock and let the user authenticate out of it.
     if (( relock )) && ! relock_session; then
-      echo "Omarchy shell restarted, but the session lock was not re-secured." >&2
+      echo "Tino shell restarted, but the session lock was not re-secured." >&2
       exit 1
     fi
     # Invitation toasts (like Voxtype/fingerprint setup) die with the old
@@ -89,5 +89,5 @@ for (( attempt = 0; attempt < 20; attempt++ )); do
   sleep 0.1
 done
 
-echo "Omarchy shell did not become ready after restart." >&2
+echo "Tino shell did not become ready after restart." >&2
 exit 1
