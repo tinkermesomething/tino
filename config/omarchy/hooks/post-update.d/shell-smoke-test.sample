@@ -1,0 +1,72 @@
+#!/bin/bash
+# Post-update smoke test for the Tino shell.
+# Loads the shell's Commons singletons in a throwaway quickshell instance and
+# fails loud if they don't resolve. Catches type shadowing (Qt 6.12 `Color`),
+# missing modules and QML load errors after Qt/quickshell upgrades.
+# Run by hand any time: bash ~/.config/omarchy/hooks/post-update.d/shell-smoke-test
+
+OMARCHY_PATH=${OMARCHY_PATH:-/usr/share/omarchy}
+COMMONS="$OMARCHY_PATH/shell/Commons"
+TIMEOUT=15
+
+# Probe expressions. Each must evaluate to something other than undefined.
+# Update these if a property is renamed on purpose.
+PROBES=(
+  "ShellColor.foreground"
+  "ShellColor.bar.background"
+  "ShellColor.tooltip.text"
+  "Style.font.family"
+)
+
+fail() {
+  echo -e "\e[31mSHELL SMOKE TEST FAILED: $1\e[0m" >&2
+  [[ -n ${2:-} ]] && echo "$2" >&2
+  notify-send -u critical "Tino shell smoke test failed" "$1" 2>/dev/null || true
+  rm -rf "$TMP"
+  exit 1
+}
+
+[[ -d $COMMONS ]] || { echo "Smoke test skipped: $COMMONS not found" >&2; exit 0; }
+[[ -n ${WAYLAND_DISPLAY:-} ]] || { echo "Smoke test skipped: no Wayland session" >&2; exit 0; }
+command -v qs >/dev/null || { echo "Smoke test skipped: qs not installed" >&2; exit 0; }
+
+TMP=$(mktemp -d)
+cp -r "$COMMONS" "$TMP/Commons"
+
+{
+  echo 'import Quickshell'
+  echo 'import QtQuick'
+  echo 'import qs.Commons'
+  echo 'ShellRoot {'
+  echo '  Component.onCompleted: {'
+  echo '    var bad = []'
+  for p in "${PROBES[@]}"; do
+    echo "    if ($p === undefined) bad.push(\"$p\")"
+  done
+  echo '    console.log("SMOKE_RESULT " + (bad.length ? "BAD " + bad.join(",") : "OK"))'
+  echo '  }'
+  echo '}'
+} >"$TMP/shell.qml"
+
+qs -n -p "$TMP" >"$TMP/out.log" 2>&1 &
+QS_PID=$!
+for _ in $(seq $((TIMEOUT * 5))); do
+  grep -q SMOKE_RESULT "$TMP/out.log" && break
+  kill -0 "$QS_PID" 2>/dev/null || break
+  sleep 0.2
+done
+kill "$QS_PID" 2>/dev/null
+wait "$QS_PID" 2>/dev/null
+
+LOG=$(sed 's/\x1b\[[0-9;]*m//g' "$TMP/out.log")
+RESULT=$(grep -o 'SMOKE_RESULT.*' <<<"$LOG" | head -1)
+
+[[ -n $RESULT ]] || fail "shell test config did not load (no result in ${TIMEOUT}s)" "$(tail -15 <<<"$LOG")"
+[[ $RESULT == "SMOKE_RESULT OK" ]] || fail "singletons resolve to undefined: ${RESULT#SMOKE_RESULT BAD }" \
+  "Likely a type name now shadowed by Qt/quickshell. Check the Qt and quickshell versions that just updated."
+
+ERRS=$(grep -E 'Cannot read property|Unable to assign|ERROR|is not a type|unavailable' <<<"$LOG" || true)
+[[ -z $ERRS ]] || fail "QML errors while loading Commons" "$ERRS"
+
+rm -rf "$TMP"
+echo -e "\e[32mShell smoke test passed\e[0m"
